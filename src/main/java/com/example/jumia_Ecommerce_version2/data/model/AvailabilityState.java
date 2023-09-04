@@ -1,0 +1,5 @@
+package com.example.jumia_Ecommerce_version2.data.model;
+
+public enum AvailabilityState {
+    ACTIVE, DEACTIVATED, DELETED,PENDING
+}
