@@ -63,16 +63,26 @@ public class WareHouseServiceIMPL implements WareHouseService {
         foundWareHouse.setWareHouseName(updateWareHouseRequest.getStreetName());
     }
    foundWareHouse.setWareHouseAddress(foundAddress);
+
     foundWareHouse.setWareHouseName(updateWareHouseRequest.getWareHouseName());
-    foundWareHouse.setLastUpdate(LocalDateTime.now());
+
+
+        foundWareHouse.setLastUpdate(LocalDateTime.now());
     wareHouseRepository.save(foundWareHouse);
         return WareHouseResponse.builder().warehouseName(foundWareHouse.getWareHouseName()).build();
     }
 
     @Override
     public boolean deleteWareHouseByName(String wareHouseName) {
-        wareHouseRepository.delete(findByWareHouseByName(wareHouseName));
-        return true;
+        try {
+            WareHouse foundWareHouse = findByWareHouseByName(wareHouseName);
+            System.out.println(foundWareHouse.getWareHouseName()+"  <=========================================================================================================================");
+            wareHouseRepository.delete(foundWareHouse);
+            return true;
+        }catch (Exception e) {
+            System.out.println(e.getMessage() +">>>>>>>>  "+wareHouseName+"  <<=222222222222222222222222222222222222222222222222222222222222222222222");
+            return false;
+        }
     }
 
 
