@@ -99,6 +99,7 @@ public class WareHouseServiceIMPL implements WareHouseService {
         WareHouseLoginResponse wareHouseLoginResponse = new WareHouseLoginResponse();
         wareHouseLoginResponse.addProductToList(productService.getAllProductByWareHouseName(foundWareHouse.getWareHouseName()));
         wareHouseLoginResponse.setLoggedIn(foundWareHouse.isLoggedIn());
+        wareHouseRepository.save(foundWareHouse);
         return  wareHouseLoginResponse;
     }
 
