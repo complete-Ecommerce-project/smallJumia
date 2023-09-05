@@ -25,14 +25,15 @@ public class WareHouseController {
     public ResponseEntity<WareHouseResponse> updateWareHouseDetails( @RequestBody UpdateWareHouseRequest updateWareHouseRequest){
         return new ResponseEntity<>(wareHouseService.updateWareHouse(updateWareHouseRequest), HttpStatus.ACCEPTED);
     }
-    @DeleteMapping("/{wareHouseName}")
-    public ResponseEntity<String> deleteWareHouseByWareHouseName(@PathVariable String wareHouseName) {
+    @DeleteMapping("/deleteByName")
+    public ResponseEntity<String> deleteWareHouseByWareHouseName(@RequestParam String wareHouseName) {
         boolean deleted = wareHouseService.deleteWareHouseByName(wareHouseName);
 
         if (deleted) {
             return ResponseEntity.ok("Warehouse with the name " + wareHouseName + " has been deleted \uD83D\uDC35\uD83D\uDE48\uD83D\uDE49");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Warehouse with the name " + wareHouseName + " not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Warehouse with the name \uD83E\uDD37\u200D♂\uD83E\uDD37\u200D♂\uD83E\uDD37\u200D♂" +
+                    "\uD83E\uDD37\u200D♂\uD83E\uDD37\u200D♂\uD83E\uDD37\u200D♂\uD83E\uDD37\u200D♂\uD83E\uDD37\u200D♂\uD83E\uDD37\u200D♂  " + wareHouseName + " not found.");
         }
     }
 
@@ -47,18 +48,21 @@ public class WareHouseController {
      }
     }
 
-    @PutMapping("/{warehouseName}/{password}")
-    public ResponseEntity<WareHouseLoginResponse> loginToWareHouseDashBoard(
-            @PathVariable String warehouseName,
-            @PathVariable String password) {
-
+    @PutMapping("/login")
+    public ResponseEntity<WareHouseLoginResponse> loginToWareHouseDashBoard(@RequestParam String warehouseName,
+            @RequestParam String password) {
+    try {
         WareHouseLoginResponse response = wareHouseService.loginToWareHouseDashBoard(warehouseName, password);
 
         if (response != null) {
             return ResponseEntity.accepted().body(response);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+    }catch (Exception e) {
+            System.out.println(e.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
+
     }
 
 
