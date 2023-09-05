@@ -76,11 +76,10 @@ public class WareHouseServiceIMPL implements WareHouseService {
     public boolean deleteWareHouseByName(String wareHouseName) {
         try {
             WareHouse foundWareHouse = findByWareHouseByName(wareHouseName);
-            System.out.println(foundWareHouse.getWareHouseName()+"  <=========================================================================================================================");
             wareHouseRepository.delete(foundWareHouse);
             return true;
         }catch (Exception e) {
-            System.out.println(e.getMessage() +">>>>>>>>  "+wareHouseName+"  <<=222222222222222222222222222222222222222222222222222222222222222222222");
+            System.out.println(e.getMessage());
             return false;
         }
     }
