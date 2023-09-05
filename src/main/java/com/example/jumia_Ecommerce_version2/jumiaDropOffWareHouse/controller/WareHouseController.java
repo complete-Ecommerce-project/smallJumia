@@ -2,6 +2,7 @@ package com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.controller;
 
 import com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.DTO.request.UpdateWareHouseRequest;
 import com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.DTO.request.WareHouseRequest;
+import com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.DTO.response.WareHouseLoginResponse;
 import com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.DTO.response.WareHouseResponse;
 import com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.service.interfaces.WareHouseService;
 import lombok.RequiredArgsConstructor;
@@ -16,25 +17,48 @@ import org.springframework.web.bind.annotation.*;
 public class WareHouseController {
     private final WareHouseService wareHouseService;
 
-    @PostMapping("/")
+    @PostMapping("/register")
     public ResponseEntity<WareHouseResponse> registerWareHouse(@RequestBody WareHouseRequest wareHouseRequest){
         return new ResponseEntity<>(wareHouseService.registerNewWareHouse(wareHouseRequest), HttpStatus.CREATED);
     }
-    @PutMapping("/")
-    public ResponseEntity<WareHouseResponse> updateWareHouseDetails(UpdateWareHouseRequest updateWareHouseRequest){
+    @PutMapping("/update")
+    public ResponseEntity<WareHouseResponse> updateWareHouseDetails( @RequestBody UpdateWareHouseRequest updateWareHouseRequest){
         return new ResponseEntity<>(wareHouseService.updateWareHouse(updateWareHouseRequest), HttpStatus.ACCEPTED);
     }
-    @DeleteMapping("/")
-    public ResponseEntity<String> deleteWareHouseByWareHouseName(@RequestParam String wareHouseName){
-        wareHouseService.deleteWareHouseByName(wareHouseName);
-        return new ResponseEntity<>(" ware house with the name "+wareHouseName+" has been deleted  \uD83D\uDC35\uD83D\uDE48\uD83D\uDE49",HttpStatus.OK);
+    @DeleteMapping("/{wareHouseName}")
+    public ResponseEntity<String> deleteWareHouseByWareHouseName(@PathVariable String wareHouseName) {
+        boolean deleted = wareHouseService.deleteWareHouseByName(wareHouseName);
 
+        if (deleted) {
+            return ResponseEntity.ok("Warehouse with the name " + wareHouseName + " has been deleted \uD83D\uDC35\uD83D\uDE48\uD83D\uDE49");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Warehouse with the name " + wareHouseName + " not found.");
+        }
     }
-    @DeleteMapping("/")
-    public ResponseEntity<String> deleteAllWareHouse(){
-        wareHouseService.deleteAllWareHouse();
-        return new ResponseEntity<>(" all ware house has been deleted  \uD83D\uDC35\uD83D\uDE48\uD83D\uDE49",HttpStatus.OK);
 
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<String> deleteAllWareHouse(){
+     boolean deleted = wareHouseService.deleteAllWareHouse();
+     if (deleted){
+         return new ResponseEntity<>(" all ware house has been deleted  \uD83D\uDC35\uD83D\uDE48\uD83D\uDE49",HttpStatus.OK);
+     }else {
+         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("\uD83D\uDE48\uD83D\uDE49\uD83D\uDE4A couldn't complete this action");
+
+     }
+    }
+
+    @PutMapping("/{warehouseName}/{password}")
+    public ResponseEntity<WareHouseLoginResponse> loginToWareHouseDashBoard(
+            @PathVariable String warehouseName,
+            @PathVariable String password) {
+
+        WareHouseLoginResponse response = wareHouseService.loginToWareHouseDashBoard(warehouseName, password);
+
+        if (response != null) {
+            return ResponseEntity.accepted().body(response);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
 

@@ -70,8 +70,9 @@ public class WareHouseServiceIMPL implements WareHouseService {
     }
 
     @Override
-    public void deleteWareHouseByName(String wareHouseName) {
+    public boolean deleteWareHouseByName(String wareHouseName) {
         wareHouseRepository.delete(findByWareHouseByName(wareHouseName));
+        return true;
     }
 
 
@@ -82,8 +83,9 @@ public class WareHouseServiceIMPL implements WareHouseService {
     }
 
     @Override
-    public void deleteAllWareHouse() {
+    public boolean deleteAllWareHouse() {
         wareHouseRepository.deleteAll();
+        return true;
     }
 
     @Override

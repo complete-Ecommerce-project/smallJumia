@@ -32,5 +32,5 @@ public class WareHouse {
     @Column(nullable = false)
     private String wareHouseName;
     @OneToMany(mappedBy = "wareHouse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Product> listOfProducts = new ArrayList<>();
+    private final List<Product> listOfProducts = new ArrayList<>();
 }
