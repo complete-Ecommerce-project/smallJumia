@@ -63,10 +63,7 @@ public class WareHouseServiceIMPL implements WareHouseService {
         foundWareHouse.setWareHouseName(updateWareHouseRequest.getStreetName());
     }
    foundWareHouse.setWareHouseAddress(foundAddress);
-
     foundWareHouse.setWareHouseName(updateWareHouseRequest.getWareHouseName());
-
-
         foundWareHouse.setLastUpdate(LocalDateTime.now());
     wareHouseRepository.save(foundWareHouse);
         return WareHouseResponse.builder().warehouseName(foundWareHouse.getWareHouseName()).build();

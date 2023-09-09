@@ -1,8 +1,7 @@
 package com.example.jumia_Ecommerce_version2.productSupplier.data.service.interfaces;
 
 import com.example.jumia_Ecommerce_version2.data.model.Address;
-import com.example.jumia_Ecommerce_version2.data.model.JumiaUser;
-import com.example.jumia_Ecommerce_version2.product.service.interfaces.ProductService;
+import com.example.jumia_Ecommerce_version2.jumiaUser.service.data.model.JumiaUser;
 import com.example.jumia_Ecommerce_version2.productSupplier.data.DTO.request.ProductSupplierRequest;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
