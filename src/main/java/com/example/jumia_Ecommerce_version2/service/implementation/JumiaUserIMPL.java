@@ -1,7 +1,6 @@
 package com.example.jumia_Ecommerce_version2.service.implementation;
 
 import com.example.jumia_Ecommerce_version2.data.repository.JumiaUserRepository;
-import com.example.jumia_Ecommerce_version2.service.interfaces.JumiaUserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

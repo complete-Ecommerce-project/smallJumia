@@ -3,6 +3,7 @@ package com.example.jumia_Ecommerce_version2.jumiaUser.service.data.model;
 import com.example.jumia_Ecommerce_version2.data.model.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 //@MappedSuperclass
 public class JumiaUser {
     @Id

@@ -3,7 +3,6 @@ package com.example.jumia_Ecommerce_version2.productSupplier.data.service.implem
 import com.example.jumia_Ecommerce_version2.productSupplier.data.DTO.request.ProductSupplierRequest;
 import com.example.jumia_Ecommerce_version2.productSupplier.data.DTO.response.ProductSupplierResponse;
 import com.example.jumia_Ecommerce_version2.productSupplier.data.service.interfaces.ProductSupplierService;
-import com.example.jumia_Ecommerce_version2.service.interfaces.JumiaUserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
