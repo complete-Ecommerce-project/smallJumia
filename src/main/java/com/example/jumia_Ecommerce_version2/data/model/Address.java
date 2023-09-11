@@ -24,5 +24,6 @@ public class Address {
     private String streetName;
     private String locationGovernmentName;
     private String state;
+    private String tryier;
 
 }
