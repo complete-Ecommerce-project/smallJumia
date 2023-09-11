@@ -25,5 +25,6 @@ public class Address {
     private String locationGovernmentName;
     private String state;
     private String tryier;
+    private String tryagain;
 
 }
