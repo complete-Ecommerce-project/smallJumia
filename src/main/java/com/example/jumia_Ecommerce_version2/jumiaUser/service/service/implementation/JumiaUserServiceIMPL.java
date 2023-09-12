@@ -26,11 +26,22 @@ public class JumiaUserServiceIMPL implements JumiaUserService {
         tools.passwordValidate(jumiaUserRequest.getPassword());
         if (jumiaUserRepository.existsByEmailAddress(jumiaUserRequest.getEmailAddress()))
             throw new RegistrationException("email address  " + jumiaUserRequest.getEmailAddress()+"  already exists");
-        System.out.println(jumiaUserRequest.getPhoneNumber()+"  <,,,,,,,,,,,,,,,,,,,,,,");
         if (jumiaUserRequest.getPhoneNumber().length() < 11 || jumiaUserRequest.getPhoneNumber().length() > 12 )
             throw new RegistrationException("phone number " + jumiaUserRequest.getPhoneNumber()+" is not  invalid");
         JumiaUser builderJumiaUser = mapToJumiaUser(jumiaUserRequest);
         return jumiaUserRepository.save(builderJumiaUser);
+    }
+
+    @Override
+    public boolean ifExistByEmail(String email) {
+        if (jumiaUserRepository.existsByEmailAddress(email)) return true;
+        return false;
+    }
+
+    @Override
+    public boolean ifExistByUsername(String username) {
+        if (jumiaUserRepository.existsByUserName(username)) return true;
+        return false;
     }
 
     public JumiaUser mapToJumiaUser(JumiaUserRequest jumiaUserRequest){
