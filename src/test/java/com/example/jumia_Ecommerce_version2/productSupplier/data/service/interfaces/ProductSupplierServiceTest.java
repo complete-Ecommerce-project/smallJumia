@@ -3,6 +3,7 @@ package com.example.jumia_Ecommerce_version2.productSupplier.data.service.interf
 import com.example.jumia_Ecommerce_version2.data.model.Address;
 import com.example.jumia_Ecommerce_version2.jumiaUser.service.data.model.JumiaUser;
 import com.example.jumia_Ecommerce_version2.productSupplier.data.DTO.request.ProductSupplierRequest;
+import com.example.jumia_Ecommerce_version2.productSupplier.data.DTO.request.UpdateProductSupplierRequest;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,8 @@ private Address address3;
 private JumiaUser jumiaUser1;
 private JumiaUser jumiaUser2;
 private JumiaUser jumiaUser3;
+private UpdateProductSupplierRequest supplierUpdateRequest;
+private Address updateAddress;
 
 private ProductSupplierRequest productSupplierRequest1;
 private ProductSupplierRequest productSupplierRequest2;
@@ -74,19 +77,36 @@ jumiaUser3 = new JumiaUser();
     jumiaUser3.setPassword("1SHOLAIBRAHIMOH2@GMAIL.COM3");
     productSupplierRequest3 = new ProductSupplierRequest();
     productSupplierRequest3.setJumiaUser(jumiaUser3);
+
+    supplierUpdateRequest = new UpdateProductSupplierRequest();
+    updateAddress = new Address();
+    updateAddress.setLocationGovernmentName("iwaya");
+    updateAddress.setStreetName("more road");
+    supplierUpdateRequest.setProductSupplierUserName("isreal");
+    supplierUpdateRequest.setUserName("isreal");
+    supplierUpdateRequest.setAddress(updateAddress);
+
     }
 
     @Test
     void registerNewProductSupplier(){
 try{
-   // assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest1));
- //   assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest2));
+    assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest1));
+    assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest2));
     assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest3));
 
 }catch(Exception e){
     System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>  "+e.getMessage());
 }
+    }
 
+    @Test
+    void updateProductSupplier(){
+try{
+    assertEquals("isreal", productSupplierServiceService.updateProductSupplierDetails(supplierUpdateRequest).getUserName());
 
+}catch (Exception a){
+    System.out.println(a.getMessage()+"   <<<<<<<");
+}
     }
 }
