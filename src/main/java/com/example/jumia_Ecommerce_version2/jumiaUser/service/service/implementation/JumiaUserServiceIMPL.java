@@ -32,6 +32,18 @@ public class JumiaUserServiceIMPL implements JumiaUserService {
         return jumiaUserRepository.save(builderJumiaUser);
     }
 
+    @Override
+    public boolean ifExistByEmail(String email) {
+        if (jumiaUserRepository.existsByEmailAddress(email)) return true;
+        return false;
+    }
+
+    @Override
+    public boolean ifExistByUsername(String username) {
+        if (jumiaUserRepository.existsByUserName(username)) return true;
+        return false;
+    }
+
     public JumiaUser mapToJumiaUser(JumiaUserRequest jumiaUserRequest){
         return JumiaUser.builder()
                 .mobileNetwork(tools.networkProvider(jumiaUserRequest.getPhoneNumber()))
