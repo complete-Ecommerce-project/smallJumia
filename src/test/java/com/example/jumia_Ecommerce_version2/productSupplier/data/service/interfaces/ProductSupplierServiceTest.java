@@ -79,8 +79,8 @@ jumiaUser3 = new JumiaUser();
     @Test
     void registerNewProductSupplier(){
 try{
-   // assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest1));
- //   assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest2));
+    assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest1));
+    assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest2));
     assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest3));
 
 }catch(Exception e){
