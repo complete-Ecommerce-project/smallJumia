@@ -61,10 +61,10 @@ public class ProductManagerServicesIMPL implements ProductSupplierService {
         String supplierUserName = supplierUpdate.getProductSupplierUserName();
        try {
            if (supplierEmail != null){
-               if (jumiaUserService.ifExistByEmail(supplierEmail)) throw new ProductSupplierException(">>email address  "+supplierEmail+" already exist <<<" );
+               if (jumiaUserService.ifExistByEmail(supplierUpdate.getEmailAddress())) throw new ProductSupplierException(">>email address  "+supplierEmail+" already exist <<<" );
                foundSupplier = findProductSupplierByEmailAddress(supplierEmail);
            } else if (foundSupplier == null && supplierUserName != null) {
-               if (jumiaUserService.ifExistByUsername(supplierUserName)) throw new ProductSupplierException(">>user name  "+supplierUserName+" already exist <<<" );
+               if (jumiaUserService.ifExistByUsername(supplierUpdate.getUserName())) throw new ProductSupplierException(">>user name  "+supplierUserName+" already exist <<<" );
 
                foundSupplier = findProductSupplierByUserName(supplierUserName);
            }if (foundSupplier == null && supplierUserName == null && supplierEmail == null )
