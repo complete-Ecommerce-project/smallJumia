@@ -10,4 +10,7 @@ public interface ProductSupplierService {
     ProductSupplier findProductSupplierByUserName(String username);
     ProductSupplier findProductSupplierByEmailAddress(String emailAddress);
     ProductSupplierResponse updateProductSupplierDetails(UpdateProductSupplierRequest supplierUpdateRequest);
+    String deleteProductSupplierByName(String username);
+
+    String deleteAllProductSupplier();
 }
