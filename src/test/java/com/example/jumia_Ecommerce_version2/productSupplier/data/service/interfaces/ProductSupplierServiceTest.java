@@ -109,4 +109,28 @@ try{
     System.out.println(a.getMessage()+"   <<<<<<<");
 }
     }
+
+@Test
+    void deleteProductSupplier(){
+        assertEquals("deleted successfully \uD83D\uDC35\uD83D\uDE48\uD83D\uDE49", productSupplierServiceService.deleteProductSupplierByName("sambone"));
+        assertEquals("deleted successfully \uD83D\uDC35\uD83D\uDE48\uD83D\uDE49", productSupplierServiceService.deleteProductSupplierByName("boneshaker"));
+        assertEquals("deleted successfully \uD83D\uDC35\uD83D\uDE48\uD83D\uDE49", productSupplierServiceService.deleteProductSupplierByName("samuel shola"));
+        assertNull(productSupplierServiceService.findProductSupplierByUserName("samuel shola"));
+        assertNull(productSupplierServiceService.findProductSupplierByEmailAddress("samuelshola14@gmail.com"));
+        assertNull(productSupplierServiceService.findProductSupplierByUserName("boneshaker"));
+        assertNull(productSupplierServiceService.findProductSupplierByEmailAddress("sholaibrahimoh@gmail.com"));
+        assertNull(productSupplierServiceService.findProductSupplierByUserName("sambone"));
+        assertNull(productSupplierServiceService.findProductSupplierByEmailAddress("boneshaker896@gmail.com"));
+}
+@Test
+    void reRegisterDeletedProductSupplier(){
+    assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest3));
+
+}
+@Test
+    void deleteAllProductSupplier(){
+        productSupplierServiceService.deleteAllProductSupplier();
+    }
+
+
 }
