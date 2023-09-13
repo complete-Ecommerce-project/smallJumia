@@ -22,7 +22,7 @@ public class WareHouse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
-    @OneToOne(orphanRemoval = true, cascade = CascadeType.REMOVE)
+    @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
     private Address wareHouseAddress;
     private LocalDateTime lastUpdate;
     private boolean loggedIn;
