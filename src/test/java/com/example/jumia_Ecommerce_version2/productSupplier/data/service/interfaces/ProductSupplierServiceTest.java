@@ -1,7 +1,9 @@
 package com.example.jumia_Ecommerce_version2.productSupplier.data.service.interfaces;
 
 import com.example.jumia_Ecommerce_version2.data.model.Address;
+import com.example.jumia_Ecommerce_version2.data.model.Categories;
 import com.example.jumia_Ecommerce_version2.jumiaUser.service.data.model.JumiaUser;
+import com.example.jumia_Ecommerce_version2.product.DTO.request.ProductRequest;
 import com.example.jumia_Ecommerce_version2.productSupplier.data.DTO.request.ProductSupplierRequest;
 import com.example.jumia_Ecommerce_version2.productSupplier.data.DTO.request.UpdateProductSupplierRequest;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
@@ -21,15 +25,23 @@ private  ProductSupplierService productSupplierServiceService;
 private Address address1;
 private Address address2;
 private Address address3;
+private Address address4;
 private JumiaUser jumiaUser1;
 private JumiaUser jumiaUser2;
 private JumiaUser jumiaUser3;
+private JumiaUser jumiaUser4;
 private UpdateProductSupplierRequest supplierUpdateRequest;
 private Address updateAddress;
 
 private ProductSupplierRequest productSupplierRequest1;
 private ProductSupplierRequest productSupplierRequest2;
 private ProductSupplierRequest productSupplierRequest3;
+private ProductSupplierRequest productSupplierRequest4;
+
+private ProductRequest productRequest1;
+private ProductRequest productRequest2;
+private ProductRequest productRequest3;
+private ProductRequest productRequest4;
 
 
     @BeforeEach
@@ -76,7 +88,22 @@ jumiaUser3 = new JumiaUser();
     jumiaUser3.setPhoneNumber("09062666877");
     jumiaUser3.setPassword("1SHOLAIBRAHIMOH2@GMAIL.COM3");
     productSupplierRequest3 = new ProductSupplierRequest();
-    productSupplierRequest3.setJumiaUser(jumiaUser3);
+    productSupplierRequest3.setJumiaUser(jumiaUser3);address3 = new Address();
+
+    address4 = new Address();
+    address4.setBuildingNumber("103");
+    address4.setState("lagos");
+    address4.setStreetName("ilaje road");
+    address4.setLocationGovernmentName("bariga");
+jumiaUser4 = new JumiaUser();
+    jumiaUser4.setEmailAddress("sholaSegun@gmail.com");
+    jumiaUser4.setPassword("son of God123");
+    jumiaUser4.setAddress(address4);
+    jumiaUser4.setUserName("raphah");
+    jumiaUser4.setPhoneNumber("091654834593");
+    jumiaUser4.setPassword("1SHOLAIBRAHIMOH2@GMAIL.COM3");
+    productSupplierRequest4 = new ProductSupplierRequest();
+    productSupplierRequest4.setJumiaUser(jumiaUser4);
 
     supplierUpdateRequest = new UpdateProductSupplierRequest();
     updateAddress = new Address();
@@ -86,6 +113,35 @@ jumiaUser3 = new JumiaUser();
     supplierUpdateRequest.setUserName("isreal");
     supplierUpdateRequest.setAddress(updateAddress);
 
+    productRequest1 = new ProductRequest();
+    productRequest1.setProductSupplierName("rephah");
+    productRequest1.setProductName("oraimo power bank");
+    productRequest1.setProductPrice(BigDecimal.valueOf(2000));
+    productRequest1.setCategory(Categories.COMPUTER);
+    productRequest1.setQuantity(50);
+    productRequest1.setWareHouseName("oshodi");
+
+
+    productRequest2 = new ProductRequest();
+    productRequest2.setProductSupplierName("isreal");
+    productRequest2.setProductName("nike cap");
+    productRequest2.setProductPrice(BigDecimal.valueOf(3000));
+    productRequest2.setQuantity(1600);
+    productRequest2.setProductName("oyingbo");
+    productRequest2.setCategory(Categories.FASHION);
+
+
+    productRequest3 = new ProductRequest();
+    productRequest3.setCategory(Categories.SPORT);
+    productRequest3.setProductSupplierName("sport bycikle");
+    productRequest3.setProductPrice(BigDecimal.valueOf(93000));
+    productRequest3.setQuantity(70);
+    productRequest3.setProductSupplierName("sambone");
+    productRequest3.setWareHouseName("oyingbo");
+
+
+
+
     }
 
     @Test
@@ -93,7 +149,8 @@ jumiaUser3 = new JumiaUser();
 try{
     assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest1));
     assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest2));
-    assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest3));
+   assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest3));
+    assertNotNull(productSupplierServiceService.registerNewProductSupplier(productSupplierRequest4));
 
 }catch(Exception e){
     System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>  "+e.getMessage());
@@ -130,6 +187,17 @@ try{
 @Test
     void deleteAllProductSupplier(){
         productSupplierServiceService.deleteAllProductSupplier();
+    }
+    @Test
+    void testThatProductSupplierCanSupplyProductsToWareHouse(){
+
+        assertDoesNotThrow(()-> {
+            productSupplierServiceService.supplyNewProduct(productRequest3);
+            productSupplierServiceService.supplyNewProduct(productRequest2);
+            productSupplierServiceService.supplyNewProduct(productRequest1);
+        });
+
+
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.jumia_Ecommerce_version2.product.DTO;
+package com.example.jumia_Ecommerce_version2.product.DTO.response;
 
 import com.example.jumia_Ecommerce_version2.data.model.Categories;
 import lombok.AllArgsConstructor;

@@ -5,6 +5,8 @@ import com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.DTO.request.Wa
 import com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.DTO.response.WareHouseLoginResponse;
 import com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.DTO.response.WareHouseResponse;
 import com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.data.model.WareHouse;
+import com.example.jumia_Ecommerce_version2.product.DTO.request.ProductRequest;
+import com.example.jumia_Ecommerce_version2.product.data.model.Product;
 
 
 public interface WareHouseService {
@@ -20,4 +22,5 @@ public interface WareHouseService {
     long countNumberOfWareHouse();
 
     WareHouseLoginResponse loginToWareHouseDashBoard(String wareHouseName, String wareHousePassword);
+
 }

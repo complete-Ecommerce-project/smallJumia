@@ -1,7 +1,7 @@
 package com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.DTO.response;
 
 import com.example.jumia_Ecommerce_version2.data.model.Categories;
-import com.example.jumia_Ecommerce_version2.product.DTO.ProductResponse;
+import com.example.jumia_Ecommerce_version2.product.DTO.response.ProductResponse;
 import lombok.*;
 
 import java.util.ArrayList;

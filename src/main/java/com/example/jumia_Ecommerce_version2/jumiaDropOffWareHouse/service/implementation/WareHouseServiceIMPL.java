@@ -10,6 +10,8 @@ import com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.exception.Ware
 import com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.exception.WareHouseRegistrationException;
 import com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.service.interfaces.WareHouseService;
 import com.example.jumia_Ecommerce_version2.data.model.Address;
+import com.example.jumia_Ecommerce_version2.product.DTO.request.ProductRequest;
+import com.example.jumia_Ecommerce_version2.product.data.model.Product;
 import com.example.jumia_Ecommerce_version2.product.service.interfaces.ProductService;
 import com.example.jumia_Ecommerce_version2.service.interfaces.AddressService;
 import jakarta.transaction.Transactional;
@@ -110,6 +112,7 @@ public class WareHouseServiceIMPL implements WareHouseService {
         wareHouseRepository.save(foundWareHouse);
         return  wareHouseLoginResponse;
     }
+
 
 
 

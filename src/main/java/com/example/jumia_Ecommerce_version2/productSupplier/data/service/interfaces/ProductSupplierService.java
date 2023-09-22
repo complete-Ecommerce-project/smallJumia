@@ -1,5 +1,7 @@
 package com.example.jumia_Ecommerce_version2.productSupplier.data.service.interfaces;
 
+import com.example.jumia_Ecommerce_version2.product.DTO.request.ProductRequest;
+import com.example.jumia_Ecommerce_version2.product.DTO.response.ProductResponse;
 import com.example.jumia_Ecommerce_version2.productSupplier.data.DTO.request.ProductSupplierRequest;
 import com.example.jumia_Ecommerce_version2.productSupplier.data.DTO.request.UpdateProductSupplierRequest;
 import com.example.jumia_Ecommerce_version2.productSupplier.data.DTO.response.ProductSupplierResponse;
@@ -13,4 +15,6 @@ public interface ProductSupplierService {
     String deleteProductSupplierByName(String username);
 
     String deleteAllProductSupplier();
+
+    ProductResponse supplyNewProduct(ProductRequest productRequest3);
 }

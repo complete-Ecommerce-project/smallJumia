@@ -22,8 +22,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne
-    private Cart cart;
+
     @Column(nullable = false)
     private String productName;
     @Column(nullable = false)
@@ -34,10 +33,13 @@ public class Product {
     private Categories category;
     private String wareHouseName;
     private long quantity;
-
-       @ManyToOne
+    private String productSupplierName;
+       @ManyToOne(cascade = CascadeType.ALL)
     private ProductSupplier productSupplier;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private WareHouse wareHouse;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Cart cart;
+
 
 }

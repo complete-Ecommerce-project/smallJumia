@@ -1,15 +1,16 @@
 package com.example.jumia_Ecommerce_version2.product.service.implementation;
 
-import com.example.jumia_Ecommerce_version2.product.DTO.ProductResponse;
+import com.example.jumia_Ecommerce_version2.product.DTO.request.ProductRequest;
+import com.example.jumia_Ecommerce_version2.product.DTO.response.ProductResponse;
 import com.example.jumia_Ecommerce_version2.product.data.model.Product;
 import com.example.jumia_Ecommerce_version2.product.data.repository.ProductRepository;
+import com.example.jumia_Ecommerce_version2.product.exception.ProductException;
 import com.example.jumia_Ecommerce_version2.product.service.interfaces.ProductService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,5 +57,31 @@ public class ProductServiceIMPL implements ProductService {
                 .map(this::mapToProductResponse)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Product supplyNewProduct(ProductRequest productRequest) {
+        return productRepository.save( Product.builder()
+                .productSupplier(productRequest.getProductSupplier())
+                .productSupplierName(productRequest.getProductSupplierName())
+                .wareHouse(productRequest.getWareHouse())
+                .productPrice(productRequest.getProductPrice())
+                .productName(productRequest.getProductName())
+                .category(productRequest.getCategory())
+                .wareHouseName(productRequest.getWareHouseName())
+                .quantity(productRequest.getQuantity())
+                .build());
+            }
+
+    @Override
+    public Product findProductByProductName(String productName) {
+        Product foundProduct = productRepository.findByProductName(productName);
+        if (foundProduct == null)throw new ProductException("counld'nt find product with the name >>>>"+productName);
+        return foundProduct;
     }
+
+    @Override
+    public Product saveProduct(Product foundProduct) {
+        return productRepository.save(foundProduct);
+    }
+}
 
