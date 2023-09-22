@@ -109,7 +109,7 @@ jumiaUser4 = new JumiaUser();
     updateAddress = new Address();
     updateAddress.setLocationGovernmentName("iwaya");
     updateAddress.setStreetName("more road");
-    supplierUpdateRequest.setProductSupplierUserName("isreal");
+    supplierUpdateRequest.setProductSupplierUserName("sambone");
     supplierUpdateRequest.setUserName("isreal");
     supplierUpdateRequest.setAddress(updateAddress);
 
