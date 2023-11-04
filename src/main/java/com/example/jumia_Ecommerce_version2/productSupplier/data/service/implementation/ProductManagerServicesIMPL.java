@@ -5,6 +5,8 @@ import com.example.jumia_Ecommerce_version2.data.model.Role;
 import com.example.jumia_Ecommerce_version2.jumiaUser.service.DTO.request.JumiaUserRequest;
 import com.example.jumia_Ecommerce_version2.jumiaUser.service.data.model.JumiaUser;
 import com.example.jumia_Ecommerce_version2.jumiaUser.service.service.interfaces.JumiaUserService;
+import com.example.jumia_Ecommerce_version2.product.data.model.Product;
+import com.example.jumia_Ecommerce_version2.product.service.interfaces.ProductService;
 import com.example.jumia_Ecommerce_version2.productSupplier.data.DTO.request.ProductSupplierRequest;
 import com.example.jumia_Ecommerce_version2.productSupplier.data.DTO.request.UpdateProductSupplierRequest;
 import com.example.jumia_Ecommerce_version2.productSupplier.data.DTO.response.ProductSupplierResponse;
@@ -18,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Objects;
 
 @Transactional
@@ -27,6 +30,7 @@ import java.util.Objects;
 public class ProductManagerServicesIMPL implements ProductSupplierService {
     private final JumiaUserService jumiaUserService;
     private final ProductSupplierRepository supplierRepository;
+    private final ProductService productService;
     @Override
     public ProductSupplierResponse registerNewProductSupplier(ProductSupplierRequest productSupplierRequest1) {
         ProductSupplier foundProductSupplier = supplierRepository.findByJumiaUserEmailAddress(productSupplierRequest1.getJumiaUser().getEmailAddress());
@@ -100,6 +104,13 @@ public class ProductManagerServicesIMPL implements ProductSupplierService {
         foundProductSupplier.setState(AvailabilityState.DELETED);
         supplierRepository.save(foundProductSupplier);
         return "deleted successfully \uD83D\uDC35\uD83D\uDE48\uD83D\uDE49";
+    }
+
+    @Override
+    public Product supplyNewProduct(Principal principal, Product product) {
+        ProductSupplier productSupplier = findProductSupplierByEmailAddress(principal.getName());
+        product.setProductSupplier(productSupplier);
+      return    productService.createProduct(product);
     }
 
     @Override

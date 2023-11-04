@@ -9,8 +9,7 @@ public class Customer  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToOne
-    private Cart cart;
+
     private boolean enabled;
 
     @OneToOne(cascade = CascadeType.ALL)

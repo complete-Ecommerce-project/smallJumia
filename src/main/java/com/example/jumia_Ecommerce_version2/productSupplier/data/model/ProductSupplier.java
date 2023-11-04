@@ -28,4 +28,5 @@ public class ProductSupplier  {
     private final List<Product> listOfProducts = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     private AvailabilityState state = AvailabilityState.PENDING;
+    private Role role;
 }
