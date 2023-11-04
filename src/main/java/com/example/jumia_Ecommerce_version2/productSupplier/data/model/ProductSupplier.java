@@ -24,10 +24,9 @@ public class ProductSupplier  {
     @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
     private JumiaUser jumiaUser;
     private boolean enabled;
-    @Enumerated(EnumType.STRING)
-    private Role role = Role.SUPPLIER;
     @OneToMany(mappedBy = "productSupplier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private final List<Product> listOfProducts = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     private AvailabilityState state = AvailabilityState.PENDING;
+    private Role role;
 }

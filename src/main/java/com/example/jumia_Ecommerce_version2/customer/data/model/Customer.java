@@ -9,11 +9,9 @@ public class Customer  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToOne
-    private Cart cart;
+
     private boolean enabled;
-    @Enumerated(EnumType.STRING)
-    private Role role = Role.CUSTOMER;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private JumiaUser user;

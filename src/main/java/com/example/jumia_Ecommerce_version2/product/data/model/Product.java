@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -22,22 +24,25 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne
-    private Cart cart;
+
     @Column(nullable = false)
     private String productName;
-    @Column(nullable = false)
-    private BigDecimal productPrice;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     @Enumerated(EnumType.STRING)
     private Categories category;
+    @Column(nullable = false)
     private String wareHouseName;
-    private long quantity;
+
 
        @ManyToOne
+
     private ProductSupplier productSupplier;
     @ManyToOne
     private WareHouse wareHouse;
+
+    @OneToMany
+    private List<ProductMeasurement> listOfProductMeasure = new ArrayList<>();
 
 }

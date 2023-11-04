@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.management.relation.Role;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -29,5 +31,7 @@ public class JumiaUser {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }

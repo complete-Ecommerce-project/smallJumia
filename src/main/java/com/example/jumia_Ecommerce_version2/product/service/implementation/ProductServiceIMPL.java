@@ -4,6 +4,7 @@ import com.example.jumia_Ecommerce_version2.product.DTO.ProductResponse;
 import com.example.jumia_Ecommerce_version2.product.data.model.Product;
 import com.example.jumia_Ecommerce_version2.product.data.repository.ProductRepository;
 import com.example.jumia_Ecommerce_version2.product.service.interfaces.ProductService;
+import com.example.jumia_Ecommerce_version2.productSupplier.data.exception.ProductSupplierException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,8 +44,6 @@ public class ProductServiceIMPL implements ProductService {
                 .createdAt(product.getCreatedAt())
                 .productName(product.getProductName())
                 .category(product.getCategory())
-                .productPrice(product.getProductPrice())
-                .quantity(product.getQuantity())
                 .build();
     }
 
@@ -56,5 +55,12 @@ public class ProductServiceIMPL implements ProductService {
                 .map(this::mapToProductResponse)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Product createProduct(Product product) {
+        if (productRepository.existsByProductName(product.getProductName()))
+            throw new ProductSupplierException("please update  the product or add to stuck instead");
+        return productRepository.save(product);
     }
+}
 
