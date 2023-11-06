@@ -19,5 +19,5 @@ public interface WareHouseService {
 
     long countNumberOfWareHouse();
 
-    WareHouseLoginResponse loginToWareHouseDashBoard(String wareHouseName, String wareHousePassword);
+
 }

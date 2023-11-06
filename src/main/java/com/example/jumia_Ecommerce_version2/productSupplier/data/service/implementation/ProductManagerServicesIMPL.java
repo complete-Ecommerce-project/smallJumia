@@ -2,6 +2,7 @@ package com.example.jumia_Ecommerce_version2.productSupplier.data.service.implem
 
 import com.example.jumia_Ecommerce_version2.data.model.AvailabilityState;
 import com.example.jumia_Ecommerce_version2.data.model.Role;
+import com.example.jumia_Ecommerce_version2.jumiaDropOffWareHouse.service.interfaces.WareHouseService;
 import com.example.jumia_Ecommerce_version2.jumiaUser.service.DTO.request.JumiaUserRequest;
 import com.example.jumia_Ecommerce_version2.jumiaUser.service.data.model.JumiaUser;
 import com.example.jumia_Ecommerce_version2.jumiaUser.service.service.interfaces.JumiaUserService;
@@ -31,6 +32,7 @@ public class ProductManagerServicesIMPL implements ProductSupplierService {
     private final JumiaUserService jumiaUserService;
     private final ProductSupplierRepository supplierRepository;
     private final ProductService productService;
+    private final WareHouseService wareHouseService;
     @Override
     public ProductSupplierResponse registerNewProductSupplier(ProductSupplierRequest productSupplierRequest1) {
         ProductSupplier foundProductSupplier = supplierRepository.findByJumiaUserEmailAddress(productSupplierRequest1.getJumiaUser().getEmailAddress());
