@@ -99,17 +99,7 @@ public class WareHouseServiceIMPL implements WareHouseService {
         return wareHouseRepository.count();
     }
 
-    @Override
-    public WareHouseLoginResponse loginToWareHouseDashBoard(String wareHouseName, String wareHousePassword) {
-        WareHouse foundWareHouse = findByWareHouseByName(wareHouseName);
-        if (!foundWareHouse.getPassword().equals(wareHousePassword)) throw new WareHouseLoginException("Login Failed \uD83D\uDC35\uD83D\uDE48\uD83D\uDE49");
-        foundWareHouse.setLoggedIn(true);
-        WareHouseLoginResponse wareHouseLoginResponse = new WareHouseLoginResponse();
-        wareHouseLoginResponse.addProductToList(productService.getAllProductByWareHouseName(foundWareHouse.getWareHouseName()));
-        wareHouseLoginResponse.setLoggedIn(foundWareHouse.isLoggedIn());
-        wareHouseRepository.save(foundWareHouse);
-        return  wareHouseLoginResponse;
-    }
+
 
 
 
