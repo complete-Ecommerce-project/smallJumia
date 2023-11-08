@@ -48,22 +48,7 @@ public class WareHouseController {
      }
     }
 
-    @PutMapping("/login")
-    public ResponseEntity<WareHouseLoginResponse> loginToWareHouseDashBoard(@RequestParam String warehouseName,
-            @RequestParam String password) {
-    try {
-        WareHouseLoginResponse response = wareHouseService.loginToWareHouseDashBoard(warehouseName, password);
 
-        if (response != null) {
-            return ResponseEntity.accepted().body(response);
-        }
-    }catch (Exception e) {
-            System.out.println(e.getMessage());
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        return ResponseEntity.status(HttpStatus.OK).build();
-
-    }
 
 
 
